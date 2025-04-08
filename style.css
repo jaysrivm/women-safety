@@ -1,0 +1,115 @@
+/* Base styles */
+body {
+    transition: background-color 0.3s ease;
+}
+
+.dark body {
+    @apply bg-gray-900 text-gray-100;
+}
+
+/* Dark mode overrides */
+.dark .bg-white {
+    @apply bg-gray-800;
+}
+
+.dark input,
+.dark textarea {
+    @apply bg-gray-700 border-gray-600 text-white;
+}
+
+/* Chat interface */
+.chat-message {
+    @apply clear-both mb-3;
+}
+
+.chat-message.user {
+    @apply float-right;
+}
+
+.chat-message.bot {
+    @apply float-left;
+}
+
+.chat-message .message-content {
+    @apply inline-block px-4 py-2 rounded-lg max-w-xs md:max-w-md;
+}
+
+.chat-message.user .message-content {
+    @apply bg-indigo-600 text-white;
+}
+
+.chat-message.bot .message-content {
+    @apply bg-indigo-100 text-gray-800;
+}
+
+.dark .chat-message.bot .message-content {
+    @apply bg-gray-700 text-gray-100;
+}
+
+/* Emergency contacts list */
+.contact-card {
+    @apply flex justify-between items-center p-3 border border-gray-200 rounded-lg;
+}
+
+.dark .contact-card {
+    @apply border-gray-700;
+}
+
+.contact-card .contact-actions {
+    @apply flex space-x-2;
+}
+
+/* Form elements */
+input:focus, button:focus {
+    @apply outline-none ring-2 ring-indigo-500 ring-opacity-50;
+}
+
+/* Map container */
+#mapPreview {
+    min-height: 200px;
+}
+
+/* Voice visualizer */
+#voiceVisualizer {
+    background: linear-gradient(to top, #e2e8f0, #f8fafc);
+}
+
+.dark #voiceVisualizer {
+    background: linear-gradient(to top, #1e293b, #0f172a);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .grid-cols-1 {
+        grid-template-columns: 1fr;
+    }
+    
+    .md\:col-span-2 {
+        grid-column: span 1;
+    }
+}
+
+/* Animation enhancements */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.emergency-active {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) infinite;
+}
+
+/* Accessibility improvements */
+[aria-busy="true"]::after {
+    content: "";
+    @apply inline-block w-4 h-4 ml-2 border-2 border-gray-400 border-t-indigo-600 rounded-full animate-spin;
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}
+

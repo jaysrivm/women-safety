@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeHer - Women's Safety App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .risk-low { background-color: #4ade80; }
+        .risk-medium { background-color: #fbbf24; }
+        .risk-high { background-color: #f87171; }
+        .panic-btn {
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-indigo-800">SafeHer</h1>
+            <div class="flex space-x-4">
+                <button id="darkModeToggle" class="p-2 rounded-full bg-gray-200">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="emergency.html" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+                    Emergency
+                </a>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Location Risk Detector -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Location Safety</h2>
+                <div id="locationStatus" class="flex items-center mb-4">
+                    <div class="w-8 h-8 rounded-full risk-medium mr-3"></div>
+                    <span>Checking your location...</span>
+                </div>
+                <button id="checkLocationBtn" class="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+                    Check Location Safety
+                </button>
+                <div id="mapPreview" class="mt-4 h-48 bg-gray-200 rounded-lg overflow-hidden">
+                    <!-- Map placeholder will be filled by JavaScript -->
+                </div>
+            </div>
+ <!-- Voice Distress Detection -->
+ <div class="bg-white p-6 rounded-xl shadow-md">
+  <h2 class="text-xl font-semibold mb-4">Voice Distress Detection</h2>
+  <div class="flex flex-col items-center">
+      <button id="voiceBtn" class="w-16 h-16 rounded-full bg-red-500 text-white flex items-center justify-center mb-4 hover:bg-red-600 transition">
+          <i class="fas fa-microphone text-2xl"></i>
+      </button>
+      <canvas id="voiceVisualizer" class="w-full h-24 bg-gray-100 rounded-lg"></canvas>
+      <p id="voiceStatus" class="mt-2 text-sm text-gray-600">Press and hold to detect distress</p>
+  </div>
+</div>
+
+<!-- AI Chatbot -->
+<div class="bg-white p-6 rounded-xl shadow-md md:col-span-2">
+  <h2 class="text-xl font-semibold mb-4">Safety Assistant</h2>
+  <div id="chatContainer" class="h-64 overflow-y-auto mb-4 p-4 bg-gray-50 rounded-lg">
+      <div class="chat-message bot mb-3">
+          <div class="inline-block px-4 py-2 rounded-lg bg-indigo-100 text-gray-800">
+              Hello! I'm your safety assistant. How can I help?
+          </div>
+      </div>
+  </div>
+  <div class="flex">
+      <input id="chatInput" type="text" placeholder="Ask a safety question..." class="flex-grow px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+      <button id="sendChatBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 transition">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+  </div>
+</div>
+</div>
+
+<script src="location.js"></script>
+<script src="voice.js"></script>
+<script src="chatbot.js"></script>
+<script>
+// Dark mode toggle
+document.getElementById('darkModeToggle').addEventListener('click', () => {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+});
+
+// Initialize dark mode if previously set
+if (localStorage.getItem('darkMode') === 'true') {
+  document.documentElement.classList.add('dark');
+}
+</script>
+</body>
+</html>

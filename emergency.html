@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Contacts - SafeHer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .panic-btn {
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-indigo-800">Emergency Contacts</h1>
+            <a href="index.html" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+                Back to Home
+            </a>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Emergency Contacts Form -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Add Emergency Contact</h2>
+                <form id="contactForm" class="space-y-4">
+                    <div>
+                        <label for="contactName" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" id="contactName" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label for="contactNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                        <input type="tel" id="contactNumber" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <button type="submit" class="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+                        Save Contact
+                    </button>
+                </form>
+            </div>
+
+            <!-- Emergency Contacts List -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Your Emergency Contacts</h2>
+                <div id="contactsList" class="space-y-3">
+                    <!-- Contacts will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Panic Button -->
+            <div class="bg-white p-6 rounded-xl shadow-md md:col-span-2 flex flex-col items-center">
+                <h2 class="text-xl font-semibold mb-4">Emergency SOS</h2>
+                <p class="text-gray-600 mb-6 text-center">Press the button below in case of emergency. This will alert your emergency contacts.</p>
+                <button id="panicButton" class="panic-btn w-24 h-24 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition">
+                    <i class="fas fa-bell text-3xl"></i>
+                </button>
+                <p id="panicStatus" class="mt-4 text-sm text-gray-600"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="emergency.js"></script>
+</body>
+</html>
